@@ -1,0 +1,96 @@
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #e5e5e5;
+    font-family: 'Press Start 2P', 'VT323', monospace;
+    color: #ffffff;
+}
+
+#spiralCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    display: block;
+    image-rendering: pixelated;
+}
+
+.dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.05);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.crt-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.08) 50%
+    ), linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 0.02),
+        rgba(0, 255, 0, 0.01),
+        rgba(0, 0, 255, 0.02)
+    );
+    background-size: 100% 3px, 6px 100%;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.content-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.character-wrapper {
+    position: relative;
+    max-width: 440px;
+    width: 75vw;
+    margin-bottom: 2rem;
+    transition: transform 0.12s ease-out;
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4));
+}
+
+.character-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    image-rendering: pixelated;
+    object-fit: contain;
+}
+
+.pixel-caption {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(0.85rem, 2.5vw, 1.25rem);
+    color: #ffffff;
+    text-shadow: 2px 2px 0px #000000, -2px -2px 0px #000000, 2px -2px 0px #000000, -2px 2px 0px #000000;
+    letter-spacing: -0.5px;
+    margin-bottom: 0;
+}
