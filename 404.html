@@ -4,6 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hionix</title>
+    <script>
+        (function() {
+            const DEFAULT_OWNER = 'hionixx';
+            const match = window.location.pathname.match(/\/repos\/(.+)$/i);
+
+            if (match && match[1]) {
+                const clean = decodeURIComponent(match[1]).replace(/^\/+|\/+$/g, '').trim();
+                const parts = clean.split('/').filter(Boolean);
+                let url = '';
+
+                if (parts.length === 1) {
+                    url = 'https://github.com/' + DEFAULT_OWNER + '/' + parts[0];
+                } else if (parts.length >= 2) {
+                    url = 'https://github.com/' + parts[0] + '/' + parts[1];
+                }
+
+                if (url) {
+                    window.location.replace(url);
+                }
+            }
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -174,7 +196,6 @@
                         const r = Math.sqrt(dx * dx + dy2);
                         
                         let angle = Math.atan2(dy, dx) + rotationAngle;
-                        
                         let val = ((r / scaledBandWidth) - (angle / TWO_PI)) % 1.0;
                         if (val < 0) val += 1.0;
 
